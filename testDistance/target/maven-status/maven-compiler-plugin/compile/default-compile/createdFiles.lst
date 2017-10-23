@@ -1,0 +1,8 @@
+com/testDistance/entity/MeasureUnit.class
+com/testDistance/entity/City.class
+com/testeDistance/dao/connection.class
+com/testDistance/service/ApiDistance.class
+com/testDistance/service/DistancesRequest.class
+com/testDistance/entity/DistanceFactory.class
+com/testeDistance/dao/distanceCity.class
+com/testDistance/entity/Distance.class

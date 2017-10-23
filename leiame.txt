@@ -1,0 +1,201 @@
+        _   _         _           _      _               _          _          _                   _              _       
+       /\_\/\_\ _    / /\       /_/\    /\ \            /\ \       /\ \       / /\                /\ \           /\ \     
+      / / / / //\_\ / /  \      \ \ \   \ \_\           \ \ \     /  \ \     / /  \              /  \ \         /  \ \    
+     /\ \/ \ \/ / // / /\ \      \ \ \__/ / /           /\ \_\   / /\ \ \   / / /\ \            / /\ \_\       / /\ \ \   
+    /  \____\__/ // / /\ \ \      \ \__ \/_/           / /\/_/  / / /\ \_\ / / /\ \ \          / / /\/_/      / / /\ \ \  
+   / /\/________// / /  \ \ \      \/_/\__/\          / / /    / / /_/ / // / /  \ \ \        / / / ______   / / /  \ \_\ 
+  / / /\/_// / // / /___/ /\ \      _/\/__\ \        / / /    / / /__\/ // / /___/ /\ \      / / / /\_____\ / / /   / / / 
+ / / /    / / // / /_____/ /\ \    / _/_/\ \ \      / / /    / / /_____// / /_____/ /\ \    / / /  \/____ // / /   / / /  
+/ / /    / / // /_________/\ \ \  / / /   \ \ \ ___/ / /__  / / /      / /_________/\ \ \  / / /_____/ / // / /___/ / /   
+\/_/    / / // / /_       __\ \_\/ / /    /_/ //\__\/_/___\/ / /      / / /_       __\ \_\/ / /______\/ // / /____\/ /    
+        \/_/ \_\___\     /____/_/\/_/     \_\/ \/_________/\/_/       \_\___\     /____/_/\/___________/ \/_________/     
+                                                                                                                       
+
+Para iniciar este projeto voce precisar ter em sua maquina os sequintes itens:
+
+- mySQL
+- ter um servidor "tomCAT 8.x.x"
+- baixar o projeto "testeDistance"
+
+Iniciando dB
+************************************************
+- ir no navegar abrir http://127.0.0.1/phpmyadmin ou qualquer outro db mySql,
+- estar rodando o dB na porta 3306 local.
+- criar database com o nome = "distanceCity"
+- importar o dataBase que esta na pasta dB_file, nele contem a tabela e o dump.
+- o usuario devera ser = "root"
+- e o passwor é não tem = ""
+
+
+Obs -> caso tenha suas proprias configurações, favor acessar /testDistance/src/main/java/com/testeDistance/dao/connection.java
+
+alterar os seguintes dados 
+
+String serverName = "seuLocal:suaPorta";
+String mydatabase = "SeuDataBase";
+String username = "seuUsernamedB";      
+String password = "suaSenha";
+
+Iniciando aplicação
+************************************************
+
+passo 0. entrar na pasta do projeto testeDistance e executar os sequintes comandos 
+			-> mvn clean package
+			-> mvn install
+passo 1. incluir o arquivo testeDistance.war para a pasta webapps do Tomcat 
+passo 2. ir para tomcat-> va pasta bin e iniciar tomcat.
+etapa 3. ir ao navegador colocar na URL "http://localhost:8080/testDistance/list "
+obs - ao acessar a URL http://localhost:8080/testDistance/list , devera retornar todos os dados da tabela "city[id,name,latitude,longitude]"
+"problemas de conexão sera evidenciado no arquivo de LOG do servidor".
+
+Consumindo webServe API RestFUl
+***********************************************
+utlizar PostMan ou Relacionados.
+URL API -> http://localhost:8080/testDistance/distances
+
+bodyVAlue json-> {"measureUnit":"MILES"} ou {"measureUnit":"KILOMETERS"}
+
+bodyValue xml -> <?xml version="1.0" encoding="UTF-8"?>
+					<root>
+					   <measureUnit>MILES</measureUnit>
+					</root>
+
+Informações adicionais adotadas no Projeto
+***************************************************
+
+Incluso testes TDD -> no algoritimos de ordenação, garantindo seu par de cidades por arranjo sem repetição.
+Incluso teste TDD -> no algoritimo de Distancia, garantido o retorno das cidades em "KM" ou "Milhas"	
+
+
+Algoritimo de Ordenação da lista de Cidades -> Foi adotado o methodo por "combinação simples" de "Arranjo"
+por ser uma combinação simples de ((n) elemetos X (n) elementos ) com coeficiente Binominal , foi incluido uma melhoria
+onde não ira repitir valores de combinação.
+	ex: Elementos do conjunto = {a,b,c,d} 
+		Resultado do algoritimo {[a,b],[a,c],[a,d],[b,c],[b,d],[c,d]}
+		OBS-> por tradar de combinações entre cidades, não importa sua combinação repetida como 
+		{[a,b],[b,a]} pois sua distancia é a mesma entr os dois pontos.
+		
+Algoritimo do Calculo entre as cidades -> Adotado a formula de 'HAVERSINE', Esta fórmula nos da uma boa aproximação quando aplicada à Terra,
+mesmo a terra não sendo uma esfera perfeita: seu raio varia de 6356,78 km nos pólos até 6378,14 km no equador.
+Estas pequenas correções, na ordem de 0,1% a 0,5%(supondo R = 6367,45 km) são usadas em todo lugar, devido a leve forma elipsoide do nosso planeta.
+	Por isto esta formula atende o problema proposto calculando margem de erro entre 0,1% a 0,5%. 
+
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+by:ThiagoFontanezGracianiby:ThiagoFontanezGracianiby:ThiagoFontanezGracianiby:ThiagoFontanezGracianiby:ThiagoFontanezGracianiby:ThiagoFontanezGracianiby:ThiagoFontanezGracianiby:ThiagoFontanezGracianiby:ThiagoFontanezGracianiby:ThiagoFontanezGraciani
+
+
+
+
